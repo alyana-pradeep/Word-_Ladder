@@ -1,0 +1,19 @@
+nv=len(graph)
+        color=[0]*nv
+        for  i in range(nv):
+            if color[i] !=0:
+                continue
+            queue=collections.deque()
+            queue.append(i)
+
+            color[i] = 1
+            while queue:
+                ele=queue.popleft()
+                for node in graph[ele]:
+                    if color[node]==0:
+                        color[node]= -1*color[ele]
+                        queue.append(node)
+                    elif color[ele]==color[node]:
+                        return False
+
+        return True
